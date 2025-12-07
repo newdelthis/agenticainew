@@ -1,9 +1,8 @@
 import chromadb
 from chromadb.utils import embedding_functions
 from langchain_community.llms import Ollama
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-from langchain.schema import Document
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import SystemMessage, HumanMessage
 import os
 
 # --------------------------------
@@ -65,8 +64,8 @@ else:
 # --------------------------------
 # INITIALIZE LANGCHAIN WITH OLLAMA
 # --------------------------------
-llm = Ollama(
-    model="gpt-oss:latest",
+model = Ollama(
+    model="llama3.2:latest",
     base_url="http://localhost:11434"
 )
 
@@ -84,13 +83,10 @@ User Question: {question}
 
 Answer:"""
 
-prompt = PromptTemplate(
-    input_variables=["context", "question"],
+prompt = ChatPromptTemplate(
+    messages=["context", "question"],
     template=rag_template
 )
-
-# Create LLM Chain
-rag_chain = LLMChain(llm=llm, prompt=prompt)
 
 # --------------------------------
 # RAG QUERY FUNCTION
@@ -142,7 +138,12 @@ def query_with_rag(user_question, category_filter=None, n_results=3):
     print("Generating Answer with LLM...")
     print(f"{'='*70}")
     
-    response = rag_chain.run(context=context, question=user_question)
+    messages = [
+        SystemMessage(content=context),
+        HumanMessage(content=user_question)
+    ]
+    
+    response = model.invoke(messages)
     
     print(f"\nAnswer:\n{response}")
     print(f"\n{'='*70}\n")

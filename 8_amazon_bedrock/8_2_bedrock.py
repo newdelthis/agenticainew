@@ -14,7 +14,7 @@ def ask_bedrock(prompt: str) -> str:
         "inputText": prompt,
         "textGenerationConfig": {
             "maxTokenCount": 200,
-            "temperature": 0.7,
+            "temperature": 0.1,
             "topP": 0.9
         }
     }

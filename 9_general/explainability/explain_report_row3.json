@@ -10,13 +10,13 @@
   "prediction": 0,
   "probability": 0.0,
   "shap_values": {
-    "income": 0.006855833253066521,
-    "credit_score": 0.04482249858905561,
-    "loan_amount": -0.002602500051143579,
-    "years_employed": 0.001314166630327236,
-    "points": 0.5495599896015483
+    "income": 0.020620903920223525,
+    "credit_score": 0.11417543606768296,
+    "loan_amount": -0.008450138791198205,
+    "years_employed": 0.004843449096964234,
+    "points": 0.4336895163729942
   },
-  "expected_value": 0.4001000000000001,
+  "expected_value": 0.43512083333333346,
   "counterfactual": {
     "flipped": true,
     "initial_label": 0,
@@ -27,5 +27,5 @@
       "points": 10.0
     }
   },
-  "natural_language": "Dear Gabrielle,\n\nThank you for your loan application. Currently, your predicted probability of approval is 0%, primarily due to your points, credit score, and income. To improve your chances, I recommend increasing your points by at least 10. If you have any questions or need assistance, please feel free to reach out. \n\nBest regards,  \n[Your Name]"
+  "natural_language": "Dear Gabrielle,\n\nThank you for your loan application. Currently, your predicted probability of approval is 0%, but there are some positive factors in your profile, such as your points and credit score. To improve your chances, I recommend increasing your points by at least 10. This adjustment could significantly enhance your likelihood of approval. \n\nBest regards,  \n[Your Name]"
 }
